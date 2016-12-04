@@ -14,14 +14,14 @@ Can assign it to any name.
 # Table of Contents
 
 * [Install](#install)
-* [Applying use](#usage-applyinguse)
-* [Example Plugin](#usage-exampleplugin)
+* [Applying use](#usage-applying-use)
+* [Example Plugin](#usage-example-plugin)
 * [Example](#usage-example)
-* [Specify Default Options](#usage-specifydefaultoptions)
-* [Specify Plugin Options](#usage-specifypluginoptions)
-* [Enhance Itself](#usage-enhanceitself)
-* [Generate Your Own to Enhance](#usage-generateyourowntoenhance)
-* [Custom Generation](#usage-customgeneration)
+* [Specify Default Options](#usage-specify-default-options)
+* [Specify Plugin Options](#usage-specify-plugin-options)
+* [Enhance Itself](#usage-enhance-itself)
+* [Generate Your Own to Enhance](#usage-generate-your-own-to-enhance)
+* [Custom Generation](#usage-custom-generation)
 
 
 ## Install
