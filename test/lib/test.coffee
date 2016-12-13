@@ -141,11 +141,10 @@ describe 'test use.gen with a specified object', ->
       result = thing.use 'some/string'
       assert.equal result?.error, 'must be a function'
 
-    it 'should ignore plugin options and only use default options', ->
+    it 'should ignore plugin options and only use base options', ->
       thing = {}
-      thing.use = use.gen(object).withOptions prop:'test'
+      thing.use = use.gen(object, prop:'test')
       thing.use ((options) -> this?[options?.prop] = 'test'), prop:'plugin'
-
       assert.equal thing.plugin, undefined, 'plugin option should have been ignored'
       assert.equal thing.test, 'test', 'default option should have been used'
 
