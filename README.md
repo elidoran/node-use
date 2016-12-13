@@ -70,7 +70,6 @@ thing.use(pluginFunction /* Or, no options */)
 ## Usage: Example Plugin
 
 ```javascript
-
 function plugin(options, thing) {
   // `this` is the `thing`, same as param #2.
   // so, these two lines do the same thing:
@@ -78,9 +77,10 @@ function plugin(options, thing) {
   thing.blah = 'example'
 
   // `options` is the combined options provided to:
-  //   1. `thing.use = use.withOptions(defaultOptions)`
-  //   2. `thing.use(fn, pluginOptions)`
-  // #2 overrides #1.
+  //   1. `use.gen(baseOptions)`
+  //   2. `thing.use = use.withOptions(defaultOptions)`
+  //   3. `thing.use(fn, pluginOptions)`
+  // #3 overrides #2, #2 overrides #1.
   // options may be null
 }
 ```
@@ -158,6 +158,7 @@ thing.process('blarg')
 //    I am processing string: (blarg)
 ```
 
+
 ## Usage: Specify Plugin Options
 
 ```javascript
@@ -189,6 +190,7 @@ thing.process('bling')
 //    I am processing string: 'bling'
 ```
 
+
 ## Usage: Enhance Itself
 
 It's possible to use plugins to enhance the `use` instance itself.
@@ -215,6 +217,7 @@ use.use(function (options, scope) {
   // so look at the source to see the original implementations.
 })
 ```
+
 
 ## Usage: Generate Your Own to Enhance
 
@@ -248,6 +251,20 @@ var use = require('@use/core')
   }
 
 use = use.gen(customScope)
+
+// also, you can specify some "base options" which are available to all plugins,
+// and, are below the "default options" of withOptions()
+use = use.gen({}, {
+  some: 'base options'
+})
+
+// these options would override "base options"
+use = use.withOptions({ some: 'default options'})
+
+thing = { use:use }
+
+// these options would override both the "base options" and "default options"
+thing.use('some plugin', { some: 'plugin options'})
 ```
 
 
