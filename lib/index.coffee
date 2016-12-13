@@ -1,5 +1,4 @@
 combine = (defaultOptions, options) ->
-
   if defaultOptions? and options? then options.__proto__ = defaultOptions
 
   return options ? defaultOptions
@@ -23,15 +22,15 @@ withOptions = (scope, defaultOptions) ->
   (plugin, options) ->
     scope.use this, scope, plugin, scope.combine defaultOptions, options
 
-gen = (scope = {}) ->
+gen = (scope = {}, baseOptions) ->
   scope.load    ?= load
   scope.combine ?= combine
   scope.use     ?= use
   scope.withOptions ?= withOptions
 
-  theUse     = (plugin, options) -> scope.use this, scope, plugin, options
-  theUse.use = (plugin, options) -> scope.use scope, scope, plugin, options
-  theUse.withOptions = (defaultOptions) -> scope.withOptions scope, defaultOptions
+  theUse     = (plugin, options) -> scope.use this, scope, plugin, scope.combine baseOptions, options
+  theUse.use = (plugin, options) -> scope.use scope, scope, plugin, scope.combine baseOptions, options
+  theUse.withOptions = (defaultOptions) -> scope.withOptions scope, scope.combine baseOptions, defaultOptions
 
   return theUse
 
