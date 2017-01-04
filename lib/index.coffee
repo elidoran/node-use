@@ -3,15 +3,17 @@ combine = (defaultOptions, options) ->
 
   return options ? defaultOptions
 
-load = (string) -> # accepts both module names and paths
+load = (string, options) -> # accepts both module names and paths
   try # NOTE: paths must be absolute because require() resolves from here.
-    require string
+    # allow overriding `require` via options and scope via use.use()
+    theRequire = options?.require ? @require
+    theRequire string
   catch error
     return error:'Unable to require plugin with string: '+string, reason:error
 
 use = (that, scope, plugin, options) ->
   if typeof plugin is 'string'
-    plugin = scope.load plugin
+    plugin = scope.load plugin, options
     if plugin.error? then return plugin # return the object with the error
 
   if typeof plugin isnt 'function' then return error:'plugin must be a function'
@@ -23,6 +25,7 @@ withOptions = (scope, defaultOptions) ->
     scope.use this, scope, plugin, scope.combine defaultOptions, options
 
 gen = (scope = {}, baseOptions) ->
+  scope.require ?= require
   scope.load    ?= load
   scope.combine ?= combine
   scope.use     ?= use
