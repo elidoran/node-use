@@ -1,3 +1,5 @@
+inTwos = require './twos'
+
 combine = (defaultOptions, options) ->
   if defaultOptions? and options? then options.__proto__ = defaultOptions
 
@@ -30,10 +32,16 @@ gen = (scope = {}, baseOptions) ->
   scope.combine ?= combine
   scope.use     ?= use
   scope.withOptions ?= withOptions
+  scope.inTwos  ?= inTwos
 
-  theUse     = (plugin, options) -> scope.use this, scope, plugin, scope.combine baseOptions, options
-  theUse.use = (plugin, options) -> scope.use scope, scope, plugin, scope.combine baseOptions, options
-  theUse.withOptions = (defaultOptions) -> scope.withOptions scope, scope.combine baseOptions, defaultOptions
+  theUse = scope.inTwos (plugin, options) ->
+    scope.use this, scope, plugin, scope.combine baseOptions, options
+
+  theUse.use = scope.inTwos (plugin, options) ->
+    scope.use scope, scope, plugin, scope.combine baseOptions, options
+
+  theUse.withOptions = (defaultOptions) ->
+    scope.withOptions scope, scope.combine baseOptions, defaultOptions
 
   return theUse
 
