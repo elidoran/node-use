@@ -29,8 +29,8 @@
   },
   "bugs": "http://github.com/elidoran/node-use/issues",
   "devDependencies": {
-    "coffee-script": "^1.11.1",
-    "mocha": "^3.1.2"
+    "coffee-script": "^1.12.2",
+    "mocha": "^3.2.0"
   },
   "dependencies": {},
   "engines": {
