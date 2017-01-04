@@ -1,3 +1,10 @@
+**0.4.0 - 2017/01/04**
+
+1. add function wrapper which converts params into pairs of plugin and options object to call the wrapped function with. The options object is optional for each one.
+2. add tests specifically for the wrapper
+3. use wrapper for `use()` and `use.use()`
+
+
 **0.3.0 - 2017/01/04**
 
 1. add 2017 to license
