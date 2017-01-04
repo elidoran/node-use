@@ -1,3 +1,9 @@
+**0.3.0 - 2017/01/04**
+
+1. add 2017 to license
+2. add ability to override `require()` via both scope and options
+
+
 **0.2.0 - 2016/12/13**
 
 1. add "base options" to `gen()`
