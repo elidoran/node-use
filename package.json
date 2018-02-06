@@ -17,10 +17,6 @@
   "author": "Eli Doran <eli+npm@elidoran.com>",
   "license": "MIT",
   "scripts": {
-    "build": "coffee --bare --compile lib",
-    "clean": "rm -rf lib/*.js",
-    "prepublish": "npm run build",
-    "postpublish": "npm run clean",
     "test": "mocha --require coffee-script/register --reporter spec --bail --check-leaks test/lib/*.coffee",
     "test4": "nave use 4.8 npm test",
     "test6": "nave use 6.12 npm test",
@@ -36,7 +32,7 @@
   "bugs": "http://github.com/elidoran/node-use/issues",
   "devDependencies": {
     "coffee-script": "^1.12.7",
-    "coveralls": "^2.13.3",
+    "coveralls": "^3.0.0",
     "istanbul": "^0.4.5",
     "mocha": "^5.0.0",
     "mocha-lcov-reporter": "^1.3.0"
