@@ -5,6 +5,7 @@
 3. add code coverage, report coverage to Coveralls, add coverage badge
 4. revise+reformat twos.coffee
 5. change this file's version lines to headers
+6. switch to JS from CS, remove all scripts related to CS handling
 
 
 ## 0.4.0 - 2017/01/04
